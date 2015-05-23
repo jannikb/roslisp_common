@@ -37,14 +37,20 @@
    (velocity :reader velocity :initarg :velocity)))
 
 (defclass joint ()
-  ((type :reader joint-type :initarg :type)
-   (name :reader name :initarg :name)
-   (axis :reader axis :initarg :axis
+  ((type :accessor joint-type :initarg :type)
+   (name :accessor name :initarg :name)
+   (axis :accessor axis :initarg :axis
          :initform (cl-transforms:make-3d-vector 1 0 0))
-   (origin :reader origin :initarg :origin
+   (origin :accessor origin :initarg :origin
            :initform (cl-transforms:make-transform
                       (cl-transforms:make-3d-vector 0 0 0)
                       (cl-transforms:make-quaternion 0 0 0 1)))
-   (parent :reader parent :initarg :parent)
-   (child :reader child :initarg :child)
-   (limits :reader limits :initarg :limits)))
+   (parent :accessor parent :initarg :parent
+           :documentation "The parent link as an link object")
+   (child :accessor child :initarg :child
+          :documentation "The child link as an link object")
+   (parent-name :accessor parent-name :initarg :parent-name
+                :documentation "The name of the parent link as a string")
+   (child-name :accessor child-name :initarg :child-name
+               :documentation "The name of the child link as a string")
+   (limits :accessor limits :initarg :limits)))

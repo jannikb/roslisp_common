@@ -40,8 +40,9 @@
            :initform (make-hash-table :test 'equal)
            :documentation "Hash-table containing a mapping of
           joint-names to joints")
-   (root-link :reader root-link :initarg :root-link)
-   (materials :reader materials :initarg :materials
+   (root-link :accessor root-link :initarg :root-link)
+   (materials :accessor materials :initarg :materials
               :initform (make-hash-table :test 'equal)
               :documentation "Hash-table containing a mapping of
               material-names to materials")))
+

@@ -79,16 +79,16 @@
    (geometry :reader geometry :initarg :geometry)))
 
 (defclass link ()
-  ((from-joint :reader from-joint :initarg :from-joint
+  ((from-joint :accessor from-joint :initarg :from-joint
                :initform nil
                :documentation "The joint that connects this link with
                its parent link")
-   (to-joints :reader to-joints :initarg :joints
+   (to-joints :accessor to-joints :initarg :joints
               :initform nil
               :documentation "The list of joints that connect this
               link with its children")
-   (name :reader name :initarg :name)
-   (intertial :reader inertial :initarg :inertial)
-   (visual :reader visual :initarg :visual)
-   (collision :reader collision :initarg :collision)))
+   (name :accessor name :initarg :name)
+   (intertial :accessor inertial :initarg :inertial)
+   (visual :accessor visual :initarg :visual)
+   (collision :accessor collision :initarg :collision)))
 
