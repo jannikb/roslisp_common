@@ -88,7 +88,10 @@
               :documentation "The list of joints that connect this
               link with its children")
    (name :accessor name :initarg :name)
-   (intertial :accessor inertial :initarg :inertial)
-   (visual :accessor visual :initarg :visual)
-   (collision :accessor collision :initarg :collision)))
+   (intertial :accessor inertial :initarg :inertial
+              :initform nil)
+   (visual :accessor visual :initarg :visual
+           :initform nil)
+   (collision :accessor collision :initarg :collision
+              :initform nil)))
 

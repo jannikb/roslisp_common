@@ -53,4 +53,5 @@
                 :documentation "The name of the parent link as a string")
    (child-name :accessor child-name :initarg :child-name
                :documentation "The name of the child link as a string")
-   (limits :accessor limits :initarg :limits)))
+   (limits :accessor limits :initarg :limits
+           :initform nil)))
