@@ -56,7 +56,9 @@ seperated by a whitespcae."
 
 (defun generate-urdf-string (robot)
   "Creates a urdf descriptions as a string of the given `robot'."
-  (s-xml:print-xml-string (generate-urdf-xml robot) :input-type :xml-struct))
+  (s-xml:print-xml-string (generate-urdf-xml robot)
+                          :input-type :xml-struct
+                          :pretty t))
 
 
 ;;; Functions for conversion from a robot part into a xml-element
