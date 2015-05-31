@@ -222,6 +222,8 @@
                          :type (intern (string-upcase
                                         (s-xml:xml-element-attribute node :|type|))
                                        (find-package :keyword))
+                         :parent-name parent-name
+                         :child-name child-name
                          :parent (gethash parent-name (links robot))
                          :child (gethash child-name (links robot)))))
     (with-slots (axis origin limits parent child) joint
