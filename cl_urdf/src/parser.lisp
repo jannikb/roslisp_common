@@ -214,8 +214,8 @@
   (let* ((axis-node (xml-element-child node :|axis|))
          (origin-node (xml-element-child node :|origin|))
          (limits-node (xml-element-child node :|limit|))
-         (parent-name (parse-xml-node :|parent| (xml-element-child node :|parent|) robot))
-         (child-name (parse-xml-node :|child| (xml-element-child node :|child|) robot))
+         (parent-name (parse-xml-node :|parent| (xml-element-child node :|parent|)))
+         (child-name (parse-xml-node :|child| (xml-element-child node :|child|)))
          (joint
           (make-instance 'joint
                          :name (s-xml:xml-element-attribute node :|name|)
@@ -223,22 +223,23 @@
                                         (s-xml:xml-element-attribute node :|type|))
                                        (find-package :keyword))
                          :parent-name parent-name
-                         :child-name child-name
-                         :parent (gethash parent-name (links robot))
-                         :child (gethash child-name (links robot)))))
+                         :child-name child-name)))
     (with-slots (axis origin limits parent child) joint
       (when axis-node
-        (setf axis (parse-xml-node :|axis| axis-node robot)))
+        (setf axis (parse-xml-node :|axis| axis-node)))
       (when origin-node
-        (setf origin (parse-xml-node :|origin| origin-node robot)))
+        (setf origin (parse-xml-node :|origin| origin-node)))
       (when limits-node
-        (setf limits (parse-xml-node :|limit| limits-node robot)))
-      (push joint (slot-value parent 'to-joints))
-      (if (from-joint child)
-          (error 'urdf-malformed
-                 :format-control "Link `~a' seems to have two parents"
-                 :format-arguments (list (name child)))
-          (setf (slot-value child 'from-joint) joint)))
+        (setf limits (parse-xml-node :|limit| limits-node)))
+      (when robot
+        (setf parent (gethash parent-name (links robot)))
+        (setf child (gethash child-name (links robot)))
+        (push joint (slot-value parent 'to-joints))
+        (if (from-joint child)
+            (error 'urdf-malformed
+                   :format-control "Link `~a' seems to have two parents"
+                   :format-arguments (list (name child)))
+            (setf (slot-value child 'from-joint) joint))))
     joint))
 
 (defmethod parse-xml-node ((name (eql :|parent|)) node &optional robot)

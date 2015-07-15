@@ -67,7 +67,7 @@
            :initform (cl-transforms:make-transform
                       (cl-transforms:make-3d-vector 0 0 0)
                       (cl-transforms:make-quaternion 0 0 0 1)))
-   (geomerty :reader geometry :initarg :geometry)
+   (geometry :reader geometry :initarg :geometry)
    (material :reader material :initarg :material
              :initform (make-instance 'material))))
 
@@ -88,7 +88,7 @@
               :documentation "The list of joints that connect this
               link with its children")
    (name :accessor name :initarg :name)
-   (intertial :accessor inertial :initarg :inertial
+   (inertial :accessor inertial :initarg :inertial
               :initform nil)
    (visual :accessor visual :initarg :visual
            :initform nil)
